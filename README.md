@@ -1,2 +1,2 @@
 # BetterDiscordPluginRefresher
-Adds a button to the top toolbar that refreshes all your enabled plugins.
+Adds a refresh button to the bottom toolbar that refreshes all your enabled plugins.
