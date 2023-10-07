@@ -6,52 +6,51 @@
  */
 
 module.exports = class RefreshPlugins {
-    constructor(meta) {
-      setTimeout(() => {
-        this.createButton();
+  constructor(meta) {
+    setTimeout(() => {
+      this.createButton();
     }, 2000);
-    }
-
-    createButton() {
-      const button = document.createElement('button');
-      button.textContent = 'Refresh Plugins';
-      button.style.backgroundColor = '#7289DA';
-      button.style.color = '#FFFFFF';
-      button.style.border = 'none';
-      button.style.borderRadius = '3px';
-      button.style.padding = '6px 10px';
-      button.style.margin = '0 4px';
-      button.style.fontWeight = 'bold';
-      button.style.cursor = 'pointer';
-      button.addEventListener('click', this.refreshPlugins);
-      const toolbar = document.querySelector('.toolbar-3_r2xA');
-      toolbar.appendChild(button);
   }
 
-    refreshPlugins()
+  createButton() {
+    const button = document.createElement('button');
+    button.textContent = 'R';
+    button.style.color = '#FFFFFF';
+    button.style.padding = '0px 0px';
+    button.style.margin = '0 0px';
+    button.style.fontWeight = 'bold';
+    button.style.cursor = 'pointer';
+    button.style.width = 'auto';
+    button.style.backgroundColor = 'rgba(114, 137, 218, 0)';
+    button.addEventListener('click', this.refreshPlugins);
+    const toolbar = document.querySelector('.container-YkUktl');
+    toolbar.appendChild(button);
+  }
+
+  refreshPlugins()
+  {
+    let pluginArray = BdApi.Plugins.getAll();
+
+    for(let i = 0; i < pluginArray.length; i++)
     {
-      let pluginArray = BdApi.Plugins.getAll();
-
-      for(let i = 0; i < pluginArray.length; i++)
+      if(pluginArray[i].name == "RefreshPlugins")
       {
-        if(pluginArray[i].name == "RefreshPlugins")
-        {
-          continue;
-        }
+        continue;
+      }
 
-        if(BdApi.Plugins.isEnabled(pluginArray[i].name))
-        {
-          BdApi.Plugins.toggle(pluginArray[i].name);
-          BdApi.Plugins.toggle(pluginArray[i].name);
-        }
+      if(BdApi.Plugins.isEnabled(pluginArray[i].name))
+      {
+        BdApi.Plugins.toggle(pluginArray[i].name);
+        BdApi.Plugins.toggle(pluginArray[i].name);
       }
     }
-    
-    start() {
-    }
+  }
   
-    stop() {
-    }
+  start() {
+  }
+
+  stop() {
+  }
 
     
   };
